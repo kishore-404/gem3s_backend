@@ -2,9 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete ,UseGuards,
   Req,
   ForbiddenException,} from '@nestjs/common';
 import { DoctorService } from './doctor.service';
-import { CreateDoctorDto } from './dto/create-doctor.dto';
-import { UpdateDoctorDto } from './dto/update-doctor.dto';
-
+import { JwtAuthGuard } from '../auth/jwt.guard';
+import { RolesGuard } from '../auth/guard/roles.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
 
 @Controller('doctor')
 export class DoctorController {
@@ -16,14 +16,12 @@ export class DoctorController {
     return this.doctorService.findAll();
   }
  
-  @Post()
-  create(@Body() body: any, @Req() req: any) {
-    if (req.user.role !== 'admin') {
-      throw new ForbiddenException('Only admin can add doctors');
-    }
-
-    return this.doctorService.create(body);
-  }
+ @UseGuards(JwtAuthGuard, RolesGuard)
+@Post()
+@Roles('admin')
+create(@Body() body: any) {
+  return this.doctorService.create(body);
+}
 
   @Get(':id')
   findOne(@Param('id') id: string) {

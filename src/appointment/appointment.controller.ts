@@ -15,7 +15,7 @@ create(@Body() body: any, @Req() req: any) {
 
   return this.appointmentService.create({
     ...body,
-    userId: req.user.sub, // 👈 VERY IMPORTANT
+    userId: req.user.sub, 
   });
 }
 
