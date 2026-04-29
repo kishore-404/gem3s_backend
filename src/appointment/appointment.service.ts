@@ -59,9 +59,9 @@ export class AppointmentService {
       .populate('doctorId', 'name specialization');
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} appointment`;
-  }
+ async findOne(id: string) {
+    return this.appointmentModel.findById(id).populate('doctorId', 'name specialization');
+  } 
 
 }
 

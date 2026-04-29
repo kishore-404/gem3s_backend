@@ -8,6 +8,9 @@ export class Doctor {
   @Prop({ required: true })
   specialization!: string;
 
+  @Prop({ required: true, unique: true })
+  email!: string;
+
   @Prop({ required: true })
   startTime!: string;
 
@@ -19,3 +22,8 @@ export class Doctor {
 }
 
 export const DoctorSchema = SchemaFactory.createForClass(Doctor);
+
+DoctorSchema.index(
+  { email: 1, startTime: 1, endTime: 1 },
+  { unique: true }
+);

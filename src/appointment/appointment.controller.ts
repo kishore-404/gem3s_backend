@@ -1,7 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete , Req, ForbiddenException } from '@nestjs/common';
 import { AppointmentService } from './appointment.service';
-import { CreateAppointmentDto } from './dto/create-appointment.dto';
-import { UpdateAppointmentDto } from './dto/update-appointment.dto';
 
 @Controller('appointment')
 export class AppointmentController {
@@ -25,8 +23,8 @@ findAll(@Req() req: any) {
 }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.appointmentService.findOne(+id);
+  findOne(@Param('id') id: any) {
+    return this.appointmentService.findOne(id);
   }
 
 }

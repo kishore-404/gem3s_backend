@@ -15,7 +15,7 @@ import { JwtAuthGuard } from './auth/jwt.guard';
     MongooseModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        uri: config.get<string>('MONGO_URI'),
+        uri: config.get<string>('MONGO_URI'),autoIndex: true,
       }),
     }),
 
