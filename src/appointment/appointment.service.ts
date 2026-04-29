@@ -19,18 +19,15 @@ export class AppointmentService {
    async create(data: any) {
     const { doctorId, date, startTime, endTime } = data;
 
-    // 🔍 1. Check doctor exists
     const doctor = await this.doctorModel.findById(doctorId);
     if (!doctor) {
       throw new BadRequestException('Doctor not found');
     }
 
-    // ⏱️ 2. Check working hours
     if (startTime < doctor.startTime || endTime > doctor.endTime) {
       throw new BadRequestException('Outside doctor working hours');
     }
-
-    // 🚫 3. Check overlapping
+    
     const conflict = await this.appointmentModel.findOne({
       doctorId,
       date,
@@ -66,12 +63,5 @@ export class AppointmentService {
     return `This action returns a #${id} appointment`;
   }
 
-  update(id: number, updateAppointmentDto: UpdateAppointmentDto) {
-    return `This action updates a #${id} appointment`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} appointment`;
-  }
 }
 

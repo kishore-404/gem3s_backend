@@ -19,13 +19,13 @@ userId!: string;
   problem!: string;
 
   @Prop({ required: true })
-  date!: string; // "2026-05-01"
+  date!: string; 
 
   @Prop({ required: true })
-  startTime!: string; // "10:00"
+  startTime!: string;
 
   @Prop({ required: true })
-  endTime!: string; // "10:30"
+  endTime!: string; 
 
   @Prop({ default: 'Scheduled' })
   status!: string;

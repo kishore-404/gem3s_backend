@@ -24,11 +24,4 @@ export class DoctorService {
     return this.doctorModel.findById(id);
   }
 
-  async update(id: string, updateDoctorDto: UpdateDoctorDto) {
-    return this.doctorModel.findByIdAndUpdate(id, updateDoctorDto, { new: true });
-  }
-
-  async remove(id: string) {
-    return this.doctorModel.findByIdAndDelete(id);
-  }
 }

@@ -10,10 +10,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   imports: [
     UsersModule,
 
-    // Load env (if not already global)
     ConfigModule,
 
-    // JWT config from .env
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

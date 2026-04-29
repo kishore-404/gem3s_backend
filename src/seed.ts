@@ -17,9 +17,9 @@ async function bootstrap() {
       role: 'admin',
     });
 
-    console.log('✅ Admin created');
+    console.log('Admin created');
   } else {
-    console.log('⚠️ Admin already exists');
+    console.log('Admin already exists');
   }
 
   await app.close();
