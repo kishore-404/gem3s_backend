@@ -1,102 +1,195 @@
-<<<<<<< HEAD
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Doctor & Appointment Management System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+I built a full-stack web application that allows admins to manage doctors and patients to seamlessly book appointments with time validation and constraints.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## Live Demo
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Frontend (Vercel): https://gem3s-frontend.vercel.app  
+- Backend (Render): https://gem3s-backend.onrender.com  
+- Postman API Docs: https://documenter.getpostman.com/view/51097643/2sBXqJLgn3  
+- Figma Design: https://www.figma.com/design/GJQ6XixDMeAAKkup3q01MN/Gem3s-Assign?node-id=0-1&t=rBcFYIbGiXqpt7iU-1  
 
-## Project setup
+---
+
+## Objective
+
+This project enables:
+
+- Admins to add and view doctors  
+- Patients to book appointments  
+- System to enforce real-world scheduling constraints  
+
+---
+
+## Features
+
+### Add Doctor (Admin)
+
+- Add doctor with:
+  - Name  
+  - Specialization  
+  - Email  
+  - Available start & end time  
+  - Time zone  
+
+---
+
+### List Doctors
+
+- View all doctors with:
+  - Name  
+  - Specialization  
+  - Email  
+  - Working hours  
+  - Time zone  
+
+---
+
+### Book Appointment
+
+Patients can:
+
+- Select doctor  
+- Choose date & time  
+- Enter:
+  - Name  
+  - Age  
+  - Problem description  
+
+---
+
+### View Appointments
+
+- Displays:
+  - Patient name  
+  - Doctor name  
+  - Date & time  
+  - Status (Scheduled)  
+
+---
+
+## Constraints Implemented
+
+### 1. No Overlapping Appointments
+
+- Prevents double booking for the same doctor  
+- Example:  
+  - 10:15–10:45 is invalid if 10:00–10:30 exists  
+
+---
+
+### 2. Booking Within Working Hours
+
+- Appointments must fall within doctor availability  
+- Invalid bookings are rejected  
+
+---
+
+## Tech Stack
+
+### Frontend
+- Next.js  
+- TypeScript  
+- Tailwind CSS  
+
+### Backend
+- NestJS  
+- REST API  
+
+### Database
+- MongoDB  
+
+### Other Tools
+- Postman (API documentation)  
+- Figma (UI design)  
+- Vercel (Frontend deployment)  
+- Render (Backend deployment)  
+
+---
+
+
+---
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js (v18+ recommended)  
+- npm / yarn  
+- MongoDB  
+
+---
+
+### Backend Setup (NestJS)
 
 ```bash
-$ npm install
-```
+cd backend
+npm install
 
-## Compile and run the project
+###  Configure Environment Variables
 
-```bash
-# development
-$ npm run start
+Create .env file:
 
-# watch mode
-$ npm run start:dev
+DATABASE_URL=database_url
+PORT=5000
 
-# production mode
-$ npm run start:prod
-```
+Run Backend
+npm run start:dev
 
-## Run tests
+Backend runs on:
+http://localhost:5000
 
-```bash
-# unit tests
-$ npm run test
+###  Frontend Setup (Next.js)
+cd frontend
+npm install
+Configure Environment Variables
 
-# e2e tests
-$ npm run test:e2e
+Create .env.local:
 
-# test coverage
-$ npm run test:cov
-```
+NEXT_PUBLIC_API_URL=http://localhost:5000
+Run Frontend
+npm run dev
 
-## Deployment
+Frontend runs on:
+http://localhost:3000
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+---
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+###  API Documentation
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+Full API collection available via Postman:
+https://documenter.getpostman.com/view/51097643/2sBXqJLgn3
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Includes:
 
-## Resources
+- Auth APIs
+- Patient APIs
+- Admin APIs
 
-Check out a few resources that may come in handy when working with NestJS:
+---
+###  UI/UX Design
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Designed using Figma:
+https://www.figma.com/design/GJQ6XixDMeAAKkup3q01MN/Gem3s-Assign?node-id=0-1&t=rBcFYIbGiXqpt7iU-1
 
-## Support
+Includes:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- Doctor listing page
+- Booking flow
+- User dashboard
 
-## Stay in touch
+###  Assumptions Made
+- Appointment duration is user-defined but cannot exceed 30 minutes
+- Doctors are assumed to be available daily within their configured working hours
+- Authentication is implemented with role-based dashboards (admin/patient)
+- Each doctor is uniquely identified using their email address to prevent duplication
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-=======
-# gem3s_backend
->>>>>>> 6a19956241f88ff2cec26f1663c09edaa01a1fd4
+### Deployment
+Frontend
+- Deployed on Vercel
+Backend
+- Deployed on Render
+Database
+- Hosted on MongoDB Atlas
